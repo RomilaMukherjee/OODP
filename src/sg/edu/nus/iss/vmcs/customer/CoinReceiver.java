@@ -117,7 +117,10 @@ public class CoinReceiver {
 			txCtrl.getCustomerPanel().setTotalMoneyInserted(0);
 		}
 		catch(VMCSException ex){
-			txCtrl.terminateFault();
+			
+			txCtrl.setState(txCtrl.getClearFaultState());
+			
+			//txCtrl.terminateFault();
 			return false;
 		}
 		return true;

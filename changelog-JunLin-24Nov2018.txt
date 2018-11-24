@@ -1,0 +1,31 @@
+1. Added State interface
+
+2. Added 3 States - SelectDrink, InsertCoin, ClearFault (implements State interface)
+
+3. Modified TransactionController.java
+- added 4 States in declaraction
+- modified Constructor to initialize 4 States
+- added getter and setter for 4 States
+- added 3 State methods
+- modified processMoneyReceived() to add insertCoin() and comment completeTransaction(), 
+---> When user has inserted sufficient coins, this will complete the transaction and the current state will move to initial SelectDrink state.
+
+4. Modified DrinkSelectionListener.java
+- modified actionPerformed() to add selectDrink() and comment startTransaction()
+---> When user has selected a drink, this will prompt user to insert coins and the current state will move to InsertCoin state.
+
+5. Modified MaintenanceController.java
+- modified loginMaintainer() to add clearFault() and comment terminateTransaction()
+---> When maintainer has logged in, this will clear all the faults and the current state will move to SelectDrink state.
+
+6. Modified DispenseController.java
+- modified dispenseDrink() to set ClearFault state in Exception and comment terminateFault()
+---> When a fault has occured, the current state will move to ClearFault state.
+
+7. Modified ChangeGiver.java
+- modified giveChange() to set ClearFault state in Exception and comment terminateFault()
+---> When a fault has occured, the current state will move to ClearFault state.
+
+8. Modified CoinReceiver.java
+- modified storeCash() to set ClearFault state in Exception and comment terminateFault()
+---> When a fault has occured, the current state will move to ClearFault state.

@@ -46,6 +46,14 @@ public class TransactionController {
 	private int selection=-1;
 	
 	/**
+	 * 24 Nov 2018 - added states
+	 */
+	State selectDrinkState;
+	State insertCoinState;
+	State clearFaultState;
+	State state;
+	
+	/**
 	 * This constructor creates an instance of the TransactionController.
 	 * @param mainCtrl the MainController.
 	 */
@@ -54,6 +62,12 @@ public class TransactionController {
 		dispenseCtrl=new DispenseController(this);
 		coinReceiver=new CoinReceiver(this);
 		changeGiver=new ChangeGiver(this);
+		
+		selectDrinkState = new SelectDrinkState(this);
+		insertCoinState = new InsertCoinState(this);
+		clearFaultState = new ClearFaultState(this);
+		
+		state = selectDrinkState;
 	}
 
 	/**
@@ -122,7 +136,9 @@ public class TransactionController {
 	 */
 	public void processMoneyReceived(int total){
 		if(total>=price)
-			completeTransaction();
+			//completeTransaction();
+			insertCoin();
+
 		else{
 			coinReceiver.continueReceive();
 		}
@@ -343,4 +359,62 @@ public class TransactionController {
 	public void nullifyCustomerPanel(){
 		custPanel=null;
 	}
+
+	/**
+	 * 24 Nov 2018 - selectDrink method()
+	 * This method will be called when triggered and the state is at SelectDrinkState.
+	 */
+	public void selectDrink(int drinkIdentifier) {
+		state.selectDrink(drinkIdentifier);
+	}
+	
+	/**
+	 * 24 Nov 2018 - insertCoin method()
+	 * This method will be called when triggered and the state is at InsertCoinState.
+	 */
+	public void insertCoin() {
+		state.insertCoin();
+	}
+	
+	/**
+	 * 24 Nov 2018 - clearFault method()
+	 * This method will be called when triggered and the state is at ClearFaultState.
+	 */
+	public void clearFault() {
+		state.clearFault();
+	}
+	
+	/** 24 Nov 2018 - setState method()
+	 * This method is settor method for state, and will be called when a state changes.
+	 */
+	public void setState(State state) {
+		this.state = state;
+		
+		if (this.state.getClass() == this.clearFaultState.getClass() && this.state.equals(this.clearFaultState))
+		{
+			terminateFault();
+		}
+	}
+
+	/** 24 Nov 2018 - getSelectDrinkState method()
+	 * This method is getter method for state.
+	 */
+	public State getSelectDrinkState() {
+		return selectDrinkState;
+	}
+	
+	/** 24 Nov 2018 - getSelectDrinkState method()
+	 * This method is getter method for state.
+	 */
+	public State getInsertCoinState() {
+		return insertCoinState;
+	}
+	
+	/** 24 Nov 2018 - getClearFaultState method()
+	 * This method is getter method for state.
+	 */
+	public State getClearFaultState() {
+		return clearFaultState;
+	}
+	
 }//End of class TransactionController
