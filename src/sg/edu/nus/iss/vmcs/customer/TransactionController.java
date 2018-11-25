@@ -63,11 +63,15 @@ public class TransactionController {
 		coinReceiver=new CoinReceiver(this);
 		changeGiver=new ChangeGiver(this);
 		
-		selectDrinkState = new SelectDrinkState(this);
-		insertCoinState = new InsertCoinState(this);
-		clearFaultState = new ClearFaultState(this);
+		//this.selectDrinkState = new SelectDrinkState(this);
+		//this.insertCoinState = new InsertCoinState(this);
+		//this.clearFaultState = new ClearFaultState(this);
 		
-		state = selectDrinkState;
+		//this.state = selectDrinkState;
+		this.selectDrinkState = null;
+		this.insertCoinState = null;
+		this.clearFaultState = null;
+		this.state = null;
 	}
 
 	/**
@@ -91,6 +95,11 @@ public class TransactionController {
 		//TEST
 		//coinReceiver.setActive(false);
 		coinReceiver.setActive(true);
+		
+		this.selectDrinkState = new SelectDrinkState(this);
+		this.insertCoinState = new InsertCoinState(this);
+		this.clearFaultState = new ClearFaultState(this);
+		setState(this.selectDrinkState);
 	}
 	
 	/**

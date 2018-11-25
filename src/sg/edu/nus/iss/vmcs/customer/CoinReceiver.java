@@ -123,8 +123,7 @@ public class CoinReceiver {
 		catch(VMCSException ex){
 			
 			txCtrl.setState(txCtrl.getClearFaultState());
-			
-			//txCtrl.terminateFault();
+			txCtrl.terminateFault();
 			return false;
 		}
 		return true;
