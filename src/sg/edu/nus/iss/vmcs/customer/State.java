@@ -4,7 +4,7 @@ public interface State {
 	
 	public void selectDrink(int identifier);
 	
-	public void insertCoin();
+	public void insertCoin(int total);
 	
 	public void clearFault();
 }

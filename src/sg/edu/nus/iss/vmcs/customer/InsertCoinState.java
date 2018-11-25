@@ -14,11 +14,17 @@ public class InsertCoinState implements State {
 		System.out.println("WARNING: You have already selected a drink.");
 	}
 	
-	public void insertCoin()
+	public void insertCoin(int total)
 	{
-		this.transactionCtrl.completeTransaction();
-		System.out.println("Thank you, enjoy your drink.");
-		this.transactionCtrl.setState(this.transactionCtrl.getSelectDrinkState());
+		if (this.transactionCtrl.processMoneyReceived(total))
+		{
+			System.out.println("Thank you, enjoy your drink.");
+			this.transactionCtrl.setState(this.transactionCtrl.getSelectDrinkState());			
+		}
+		else
+		{
+			System.out.println("Insufficient coins inserted.");
+		}
 	}
 	
 	public void clearFault()

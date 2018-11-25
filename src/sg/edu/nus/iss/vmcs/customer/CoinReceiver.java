@@ -81,7 +81,9 @@ public class CoinReceiver {
 			//txCtrl.getCustomerPanel().setCoinInputBoxActive(false);
 		}
 		else{
-			txCtrl.getCustomerPanel().setCoinInputBoxActive(false);
+			//TEST
+			//txCtrl.getCustomerPanel().setCoinInputBoxActive(false);
+			txCtrl.getCustomerPanel().setCoinInputBoxActive(true);
 			int value=coin.getValue();
 			txCtrl.getCustomerPanel().displayInvalidCoin(false);
 			arlCoins.add(coin);
@@ -89,7 +91,9 @@ public class CoinReceiver {
 			//int total=txCtrl.getCustomerPanel().addMoney(value);
 			txCtrl.getCustomerPanel().setTotalMoneyInserted(getTotalInserted());
 			txCtrl.getCustomerPanel().setChange("");
-			txCtrl.processMoneyReceived(getTotalInserted());
+			
+			//txCtrl.processMoneyReceived(getTotalInserted());
+			txCtrl.insertCoin(getTotalInserted());
 		}
 	}
 
@@ -135,7 +139,9 @@ public class CoinReceiver {
 		if(custPanel==null){
 			return;
 		}
-		custPanel.setCoinInputBoxActive(false);
+		//TEST
+		//custPanel.setCoinInputBoxActive(false);
+		custPanel.setCoinInputBoxActive(true);
 	}
 	
 	/**

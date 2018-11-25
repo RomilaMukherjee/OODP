@@ -16,9 +16,10 @@ public class SelectDrinkState implements State {
 		this.transactionCtrl.setState(this.transactionCtrl.getInsertCoinState());
 	}
 	
-	public void insertCoin()
+	public void insertCoin(int total)
 	{
 		System.out.println("WARNING: Please select a drink first.");
+		this.transactionCtrl.cancelTransaction();;
 	}
 	
 	public void clearFault()

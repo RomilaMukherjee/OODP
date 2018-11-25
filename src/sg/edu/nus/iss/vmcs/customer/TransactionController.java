@@ -88,7 +88,9 @@ public class TransactionController {
 		dispenseCtrl.updateDrinkPanel();
 		dispenseCtrl.allowSelection(true);
 		changeGiver.displayChangeStatus();
-		coinReceiver.setActive(false);
+		//TEST
+		//coinReceiver.setActive(false);
+		coinReceiver.setActive(true);
 	}
 	
 	/**
@@ -116,7 +118,9 @@ public class TransactionController {
 		changeGiver.resetChange();
 		dispenseCtrl.ResetCan();
 		changeGiver.displayChangeStatus();
-		dispenseCtrl.allowSelection(false);
+		//TEST
+		//dispenseCtrl.allowSelection(false);
+		dispenseCtrl.allowSelection(true);
 		coinReceiver.startReceiver();
 		custPanel.setTerminateButtonActive(true);
 	}
@@ -134,13 +138,15 @@ public class TransactionController {
 	 * is instructed to continue receiving the coin&#46;
 	 * @param total the total money received&#46;
 	 */
-	public void processMoneyReceived(int total){
-		if(total>=price)
-			//completeTransaction();
-			insertCoin();
-
+	//public void processMoneyReceived(int total){
+	public boolean processMoneyReceived(int total){
+		if(total>=price) {
+			completeTransaction();
+			return true;
+		}
 		else{
 			coinReceiver.continueReceive();
+			return false;
 		}
 	}
 	
@@ -183,7 +189,9 @@ public class TransactionController {
 	 */
 	public void terminateFault(){
 		System.out.println("TerminateFault: Begin");
-		dispenseCtrl.allowSelection(false);
+		//TEST
+		//dispenseCtrl.allowSelection(false);
+		dispenseCtrl.allowSelection(true);
 		coinReceiver.refundCash();
 		refreshMachineryDisplay();
 		System.out.println("TerminateFault: End");
@@ -203,7 +211,9 @@ public class TransactionController {
 	 */
 	public void terminateTransaction(){
 		System.out.println("TerminateTransaction: Begin");
-		dispenseCtrl.allowSelection(false);
+		//TEST
+		//dispenseCtrl.allowSelection(false);
+		dispenseCtrl.allowSelection(true);
 		coinReceiver.stopReceive();
 		coinReceiver.refundCash();
 		if(custPanel!=null){
@@ -372,8 +382,8 @@ public class TransactionController {
 	 * 24 Nov 2018 - insertCoin method()
 	 * This method will be called when triggered and the state is at InsertCoinState.
 	 */
-	public void insertCoin() {
-		state.insertCoin();
+	public void insertCoin(int total) {
+		state.insertCoin(total);
 	}
 	
 	/**
@@ -415,6 +425,13 @@ public class TransactionController {
 	 */
 	public State getClearFaultState() {
 		return clearFaultState;
+	}
+	
+	/** 24 Nov 2018 - getCurrentState method()
+	 * This method is getter method for current state.
+	 */
+	public State getCurrentState() {
+		return state;
 	}
 	
 }//End of class TransactionController

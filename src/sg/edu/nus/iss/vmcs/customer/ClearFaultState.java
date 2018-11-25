@@ -14,7 +14,7 @@ public class ClearFaultState implements State {
 		System.out.println("WARNING: Fault occured, you cannot select drinks.");
 	}
 	
-	public void insertCoin()
+	public void insertCoin(int total)
 	{
 		System.out.println("WARNING: Fault occured, you cannot insert coins.");
 	}

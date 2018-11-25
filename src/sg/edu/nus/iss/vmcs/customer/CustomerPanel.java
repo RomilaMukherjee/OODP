@@ -123,7 +123,9 @@ public class CustomerPanel extends Dialog {
 		drinkSelectionBox=new DrinkSelectionBox(txCtrl);
 		TerminateButtonListener terminateButtonListener=new TerminateButtonListener(txCtrl);
 		
-		coinInputBox.setActive(false);
+		//TEST
+		//coinInputBox.setActive(false);
+		coinInputBox.setActive(true);
 		drinkSelectionBox.setActive(true);
 		
 		btnTerminate.addActionListener(terminateButtonListener);

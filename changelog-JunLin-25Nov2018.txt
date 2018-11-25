@@ -1,0 +1,29 @@
+1. Modified insertCoin() in State.java interface to take in an integer parameter
+- receiveCoin() in CoinReceiver.java will call this method
+
+2. Modified method signature of insertCoin() in 3 States - SelectDrink, InsertCoin, ClearFault (implements State interface)
+
+3. Modified insertCoin method in InsertCoinState.java
+- this method takes in an integer parameter and calls processMoneyReceived()
+---> if coins are sufficient, set state to SelectDrink
+---> if coins are not sufficient to dispense, it will remain in the same state
+
+4. Modified processMoneyReceived() method signature in TransactionController.java
+- returns a true/false boolean value to evaluate whether sufficient coins are received
+
+5. Modified receiveCoin() in CoinReceiver.java
+- commented processMoneyReceived()
+- added insertCoin() from TransactionController.java
+
+6. Added //TEST in various setActive() to TRUE to test State behaviours
+- coinInputBox.setActive() in CustomerPanel.java
+- txCtrl.getCustomerPanel().setCoinInputBoxActive() in CoinReceiver.java
+- custPanel.setCoinInputBoxActive() in CoinReceiver.java
+- coinReceiver.setActive() in TransactionController.java
+- dispenseCtrl.allowSelection() in TransactionController.java
+
+7. Added a getter method in TransactionController.java
+--> to get the current state
+
+8. Modified insertCoin method in SelectDrinkState.java
+- this method prompts to select a drink first and cancel any transactions / coins that have inserted
